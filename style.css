@@ -1,66 +1,155 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
+/* Reset some defaults */
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 700px;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e,#23a6d5,#23d5ab, #e3fce0);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+  
+  }
+  @keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+  }
+  
+  .container {
+    max-width: 800px;
     margin: auto;
-}
-
-h1 {
-    text-emphasis: center;
-    margin-bottom: 20px;
-}
-
-.time-block {
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  /* Time block row */
+  .time-block {
     display: flex;
     align-items: center;
-    margin: 5px 0;
-    border-radius: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px;
     overflow: hidden;
-}
-
-.hour {
-    width: 80px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.05);
+  }
+  
+  .time-block:hover {
+    transform: scale(1.01);
+  }
+  
+  /* Hour label */
+  .hour {
+    width: 90px;
+    background-color: #495057;
+    color: white;
     text-align: center;
-    padding: 10px;
-    background-color: #ddd;
-}
-
-.task {
+    padding: 16px;
+    font-weight: bold;
+  }
+  
+  /* Task input field */
+  .task {
     flex: 1;
-    padding: 10px;
-    border: none;
+    padding: 16px;
     font-size: 16px;
-}
-
-.saveBtn, .deleteBtn {
-    padding: 10px;
     border: none;
+    outline: none;
+  }
+  
+  .past {
+    background-color: #d6d8db;
+  }
+  
+  .present {
+    background-color: #ffc9c9;
+  }
+  
+  .future {
+    background-color: #d4edda;
+  }
+  
+  /* Save and Delete buttons */
+  .saveBtn, .deleteBtn,.editBtn {
+    padding: 17px 17px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-}
-
-.saveBtn {
-    background-color: #28a745;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .saveBtn {
+    background: linear-gradient(to right,#28a745,#218838);
     color: white;
-}
+  }
+  
+  .saveBtn:hover {
+    background: linear-gradient(to right, #218838, #1e7e34);
+    transform: translateY(-1px);
+  }
 
-.deleteBtn {
-    background-color: #dc3545;
+  .deleteBtn {
+    background: linear-gradient(to right, #dc3545, #c82333);
     color: white;
-}
+  }
+  
+  .deleteBtn:hover {
+    background: linear-gradient(to right, #c82333, #bd2130);
+    transform: translateY(-1px);
+  }
 
-.past {
-    background-color: #d3d3d3;
-}
-
-.present {
-    background-color: #ff6961;
-}
-
-.future {
-    background-color: #77dd77;
-}
+  .editBtn {
+    background: linear-gradient(to right, #ffc107, #e0a800);
+    color: #212529;
+  }
+  .editBtn:hover {
+    background: linear-gradient(to right, #e0a800, #d39e00);
+    transform: translateY(-1px); 
+  }
+  
+  /* Responsive improvements */
+  @media (max-width: 600px) {
+    .time-block {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .hour {
+      width: 100%;
+      text-align: left;
+      padding-left: 15px;
+    }
+  
+    .task, .saveBtn, .deleteBtn, .editBtn{
+      width: 100%;
+      margin-top: 5px;
+    }
+  
+    .saveBtn, .deleteBtn , .editBtn{
+      border-left: none;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+  }
+  

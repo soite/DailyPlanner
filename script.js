@@ -31,8 +31,9 @@ function loadPlanner() {
         saveBtn.classList.add("saveBtn");
         saveBtn.textContent = "save";
         saveBtn.onclick = () => {
-            const val = document.getElementById(`input-${hour}`).value;
+            const val = input.value;
             localStorage.setItem(`task-${hour}`, val);
+            input.disabled = true;
         };
 
         const deleteBtn = document.createElement("button");
@@ -40,9 +41,20 @@ function loadPlanner() {
         deleteBtn.textContent = "X";
         deleteBtn.onclick = () => {
             localStorage.removeItem(`task-${hour}`);
-            document.getElementById(`input-${hour}`).value = "";
+            input.value = "";
+            input.disabled = true;
         };
-        timeBlock.append(hourLabel, input, saveBtn, deleteBtn);
+
+        const editBtn = document.createElement("button");
+        editBtn.classList.add("editBtn");
+        editBtn.textContent = "✏️ Edit";
+        editBtn.onclick = () => {
+            const input = document.getElementById(`input-${hour}`);
+            input.disabled = false;
+            input.focus();
+        };
+
+        timeBlock.append(hourLabel, input, saveBtn,editBtn,deleteBtn);
         container.appendChild(timeBlock);
     }
 }
